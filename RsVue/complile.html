@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./RsVue.js"></script>
+    <script src="./compile.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p rs-text="name"></p>
+        <p>{{name}}</p>
+        <p>{{sex}}</p>
+        <p>{{douAge}}</p>
+        <input type="text" rs-model="name">
+        <button @click="onClick">点击我</button>
+        <div rs-html="codeHtml">123</div>
+    </div>
+</body>
+</html>
+<script>
+const Rversion = new RsVue({
+    el: '#app',
+    data: {
+        name: "My name's John",
+        sex: "男",
+        codeHtml: "<h1>这是一段html代码</h1>"
+
+    },
+    created () {
+        console.log("开始执行created！")
+        setInterval(()=>{
+            this.name = "My name's Tim"
+        },3000)
+    },
+    methods: {
+        onClick(){
+            alert("那个傻逼敲我头？？？")
+            this.sex = "女"
+        }
+    },
+})
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>hello,<span id="name"></span></p>
+    </div>
+</body>
+</html>
+<script> 
+    var obj = {};
+    Object.defineProperty(obj, "name", {
+        configurable:true, //是否可改变或删除
+        enumerable:true, //是否可枚举
+        // obj.name 被访问执行
+        get() {
+            console.log("获取name")
+            return document.querySelector("#name").innerHTML;
+        },
+        // obj.name 被更改执行
+        set(rain) {
+            console.log("设置name")
+            return document.querySelector("#name").innerHTML = rain;
+        }
+    });
+    Object.defineProperty(obj, "sex", {
+        configurable:true, //是否可改变或删除
+        enumerable:true, //是否可枚举
+        // obj.name 被访问执行
+        get() {
+            console.log("sex")
+            return document.querySelector("#name").innerHTML;
+        },
+        // obj.name 被更改执行
+        set(rain) {
+            console.log("设置sex")
+            return document.querySelector("#name").innerHTML = rain;
+        }
+    });
+    obj.sex = "nv";
+    obj.name = "Ben";
+    console.log(obj)
+</script>

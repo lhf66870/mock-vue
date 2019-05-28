@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- TODO: 给一个ul添加10000个li， -->
+
+    <!-- ! 1.先用拼接字符串的方式来实现： -->
+
+    <!-- ! 2.先用拼接字符串的方式来实现： -->
+
+</body>
+</html>
+
+<!-- ! 1.先用拼接字符串的方式来实现： -->
+<!-- <script>
+let start = Date.now()
+let str = ''
+let newUlEle = document.createElement('ul')
+document.body.appendChild(newUlEle)
+ 
+for (let i = 0; i < 10000; i++) {
+    str += '<li>第' + i + '个子节点</li>'
+}
+newUlEle.innerHTML = str
+console.log('耗时' + (Date.now() - start) + 'ms');
+</script> -->
+
+
+
+<!-- !换成append()的方式，逐个添加对应的li -->
+<!-- <script>
+
+let start = Date.now()
+let str = ''
+let newUlEle = document.createElement('ul')
+ 
+document.body.appendChild(newUlEle)
+ 
+for (let i = 0; i < 10000; i++) {
+    let liEle = document.createElement('li')
+ 
+    liEle.textContent = '第' + i + '个子节点'
+    newUlEle.appendChild(liEle)
+}
+ 
+console.log('耗时：' + (Date.now() - start) + 'ms')
+</script> -->
+
+
+
+
+
+
+<!-- !第二种方法要比第一种方法耗时 createDocumentFragment的方法 -->
+<script>
+let start = Date.now()
+let str = ''
+let newUlEle = document.createElement('ul')
+ 
+document.body.appendChild(newUlEle)
+ 
+let fragment = document.createDocumentFragment()
+ 
+for (let i = 0; i < 10000; i++) {
+    let liEle = document.createElement('li')
+ 
+    liEle.textContent = '第' + i + '个子节点'
+    fragment.appendChild(liEle)
+}
+ 
+newUlEle.appendChild(fragment)
+ 
+console.log('耗时：' + (Date.now() - start) + 'ms')
+</script>
+
+
+<!-- 我们可以理解为DocumentFragment （文档碎片节点）是一个插入结点时的过渡，
+    我们把要插入的结点先放到这个文档碎片里面，然后再一次性插入文档中，这样就
+    减少了页面渲染DOM元素的次数。经IE和FireFox下测试，在append1000个元素时，
+    效率能提高10%-30%，FireFox下提升较为明显。不要小瞧这10%-30%，效率的提高
+    是着眼于多个细节的，如果我们能在很多地方都能让程序运行速度提高10%-30%，那将是一个质的飞跃！
+ -->

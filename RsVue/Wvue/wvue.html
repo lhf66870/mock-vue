@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./Wvue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ msg }}
+        <p w-text="title"></p>
+        <p>
+            {{ msg }}
+        </p>
+        <input type="text" w-model="title" >
+        {{title}}
+    </div>
+</body>
+</html>
+<script>
+let wf = new Wvue({
+    el: "#app",
+    data: {
+        msg: "绑定测试",
+        title: "QA是脑残"
+    }
+})
+// 未作代理 ：没有把 data 代理到 wf 对象里
+wf.$data.msg = "测试修改"
+
+// console.log(wf.$data)
+</script>
